@@ -1,0 +1,19 @@
+img{
+    width: 10px;
+    height: 10px;
+}
+
+body{
+    background-color: whitesmoke;
+}
+p{
+    font-size: 40%;
+    text-align: center;
+    color: blue;
+}
+li{
+    margin-top: 8px;
+    font-weight: bold;
+    color: black;
+}
+
