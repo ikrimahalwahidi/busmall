@@ -27,6 +27,7 @@ function item(name,source) {
   this.display=0;
 
   item.allItems.push(this)
+  // localStorage.setItem('item' , JSON.stringify(item.allItems));
 nameArr.push(this.name);
 }
 
@@ -76,15 +77,15 @@ function renderThreeImages() {
   Image3Index=generateRandomIndex();
 
  
-  while (Image1Index===Image2Index ||Image1Index===Image3Index || Image3Index === Image2Index || displayPictures.includes(Image1Index)||displayPictures.includes(Image3Index)||displayPictures.includes(Image2Index))
+  while (Image1Index===Image2Index ||Image1Index===Image3Index || Image3Index === Image2Index){
 
     Image1Index=generateRandomIndex();
     Image2Index=generateRandomIndex();
     Image3Index=generateRandomIndex();
+  }
+
   
-  
-  
-  displayPictures=[Image1Index,Image2Index,Image3Index];
+
 
      console.log('after',displayPictures);
 
@@ -169,13 +170,11 @@ for (let i = 0; i < item.allItems.length; i++) {
 votesArr.push(item.allItems[i].votes);
 displayArr.push(item.allItems[i].display);
 }
-
-    
-
+    showingChart();
+coantainer.removeEventListener('click',handleUserClick)
 }
 
 console.log(votesArr);
-
 
 
 
@@ -201,10 +200,10 @@ function showingList() {
 
 }
 
-function Chart() {
+function showingChart() {
   let ctx = document.getElementById('myChart').getContext('2d');
   
-  let Chart= new Chart(ctx,{
+  let chart= new Chart(ctx,{
     
    type: 'bar',
 
@@ -239,4 +238,8 @@ function Chart() {
   });
   
 }
-getFromStorage();
+
+
+
+
+
