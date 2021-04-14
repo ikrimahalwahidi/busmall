@@ -66,20 +66,28 @@ function generateRandomIndex() {
   return Math.floor(Math.random() * item.allItems.length);
 }
 
-
+let displayPictures=[];
 
 function renderThreeImages() {
+  console.log('before' , displayPictures);
 
   Image1Index=generateRandomIndex();
   Image2Index=generateRandomIndex();
   Image3Index=generateRandomIndex();
 
-  while (Image1Index===Image2Index || Image1Index===Image3Index || Image3Index===Image2Index) {
+ 
+  while (Image1Index===Image2Index ||Image1Index===Image3Index || Image3Index === Image2Index || displayPictures.includes(Image1Index)||displayPictures.includes(Image3Index)||displayPictures.includes(Image2Index))
+
+    Image1Index=generateRandomIndex();
     Image2Index=generateRandomIndex();
     Image3Index=generateRandomIndex();
-  }
-
   
+  
+  
+  displayPictures=[Image1Index,Image2Index,Image3Index];
+
+     console.log('after',displayPictures);
+
 
   image1Element.src=item.allItems[Image1Index].source;
   item.allItems[Image1Index].display++;
@@ -90,8 +98,8 @@ function renderThreeImages() {
   image3Element.src=item.allItems[Image3Index].source;
   item.allItems[Image3Index].display++;
 
-
 }
+
 
 renderThreeImages();
 
@@ -143,6 +151,9 @@ console.log(votesArr);
 
 
 
+
+
+
 function showingList() {
   let list=document.getElementById('results');
 
@@ -159,4 +170,43 @@ function showingList() {
     
   }
 
+}
+
+function Chart() {
+  let ctx = document.getElementById('myChart').getContext('2d');
+  
+  let Chart= new Chart(ctx,{
+    
+   type: 'bar',
+
+   data:{
+    
+      labels: nameArr,
+      
+      datasets: [
+        {
+        label: 'votesArr',
+        data: votesArr,
+        backgroundColor: [
+          'rgb(25,22,24)',
+        ],
+  
+        borderWidth: 1
+      },
+
+      {
+        label: 'displayArr',
+        data: displayArr,
+        backgroundColor: [
+          'blue',
+        ],
+  
+        borderWidth: 1
+      }
+      
+    ]
+    },
+    options: {}
+  });
+  
 }
