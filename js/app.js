@@ -173,6 +173,7 @@ function showingList() {
 }
 
 function Chart() {
+  
   let ctx = document.getElementById('myChart').getContext('2d');
   
   let Chart= new Chart(ctx,{
@@ -209,4 +210,4 @@ function Chart() {
     options: {}
   });
   
-}
+  }
