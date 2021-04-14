@@ -103,6 +103,34 @@ function renderThreeImages() {
 
 renderThreeImages();
 
+
+function storage() {
+  let stringOfItem = JSON.stringify(item);
+ 
+
+  localStorage.setItem('items like', stringOfItem);
+  
+}
+let stringList ;
+
+function getFromStorage() {
+  let list = localStorage.getItem('items like');
+  
+
+  stringList = JSON.parse(list);
+  
+
+  if (stringList !== null) {
+      item = stringList;
+  }
+
+
+}
+
+
+
+
+
 coantainer.addEventListener('click',handleUserClick);
 
 
@@ -131,6 +159,7 @@ function handleUserClick(event) {
 
     
   }else{
+    storage();
     let button=document.getElementById('button');
     
     button.addEventListener('click',showingList);
@@ -210,3 +239,4 @@ function Chart() {
   });
   
 }
+getFromStorage();
